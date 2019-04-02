@@ -1,0 +1,11 @@
+---
+- name: Install Chocolatey
+  win_chocolatey:
+    name: "chocolatey"
+
+- name: Downgrade Chocolatey
+  win_chocolatey:
+    name: "chocolatey"
+    state: downgrade
+    version: 0.10.11
+

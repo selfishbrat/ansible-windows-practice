@@ -1,0 +1,6 @@
+---
+- name: Run test windows role
+  hosts: windows
+
+  roles:
+    - roles/win_ad_install

@@ -1,0 +1,25 @@
+---
+- name: install OpenSSH
+  win_chocolatey:
+    name: "{{ package_name }}"
+    params: "{{ parameters }}"
+    state: latest
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+        
+- name: Set up Windows service
+  win_service:
+    name: "{{ service_name }}"
+    state: started
+    start_mode: auto
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+  
+- name: Allow OpenSSH to Windows servers
+  win_firewall_rule:
+    name: "{{ service_name }}"
+    localport: "{{ local_port }}"
+    action: allow
+    protocol: "{{ protocol_name }}"
+    direction: in
+    state: present
+    enabled: yes
+

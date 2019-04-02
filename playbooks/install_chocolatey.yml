@@ -1,0 +1,6 @@
+---
+- name: Run test windows role
+  hosts: windows
+
+  roles:
+    - roles/install_chocolatey
