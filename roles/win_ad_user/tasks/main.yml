@@ -1,2 +1,17 @@
 ---
 # tasks file for win_ad_user
+- name: create Domain groups
+  win_domain_group:
+    name: "{{ item.group_name }}"
+    scope: "{{ item.group_scope }}"
+  with_items: "{{ user_info }}"
+  
+- name: Create Domain Users
+  win_domain_user:
+    name: "{{ item.name }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.lastname }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+    groups: "{{ item.group_name }}"
+  with_items: "{{ user_info }}"

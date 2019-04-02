@@ -1,0 +1,7 @@
+---
+- name: Run test windows role
+  hosts: windows
+  vars_files:
+    - group_vars/add_ad_users.yml
+  roles:
+    - roles/win_ad_user
